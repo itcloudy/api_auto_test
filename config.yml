@@ -1,0 +1,19 @@
+email:
+  host: smtp.qq.com
+  user: 45@qq.com
+  passwd: uqucfxajhaewbiei
+  receivers:
+    - tresyt@qq.com
+
+base:
+  debug: 1
+  base_url: http://192.168.16.16:8082
+  username: system_saler
+  password: batarbatar3
+  company_id: 1
+  login_url: account/account/login
+  app_id: 1000
+  app_secret: abc
+  case_type: xml
+  local_report: 1
+

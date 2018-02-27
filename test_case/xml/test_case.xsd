@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.batar.cn"
+	xmlns="http://www.batar.cn"
+	elementFormDefault="qualified">
+	<xs:element name="test_case" >
+		<xs:complexType >
+			<xs:all>
+				<xs:element  name="case_api">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="case_name" type="xs:string"/>
+							<xs:element name="case_user" type="xs:string"/>
+							<xs:element name="case_category" type="xs:string"/>
+							<xs:element name="case_module" type="xs:string"/>
+							<xs:element name="case_function" type="xs:string"/>
+							<xs:element name="case_active" type="xs:boolean" default="true"/>
+							<xs:element name="case_debug" type="xs:boolean" default="true"/>
+							<xs:element name="case_address" type="xs:string"/>
+							<xs:element name="case_data_location" >
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="本地"/>
+										<xs:enumeration value="文件"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="case_method" >
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="post"/>
+										<xs:enumeration value="get"/>
+										<xs:enumeration value="put"/>
+										<xs:enumeration value="delete"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="case_data_type" >
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Form"/>
+										<xs:enumeration value="Data"/>
+										<xs:enumeration value="File"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="case_check_point">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="包含"/>
+										<xs:enumeration value="不包含"/>
+										<xs:enumeration value="等于"/>
+										<xs:enumeration value="不等于"/>
+										<xs:enumeration value="正则匹配"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="case_check_content" >
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:whiteSpace value="replace"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="case_request_data">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:whiteSpace value="replace"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="case_comment" type="xs:string"  />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
