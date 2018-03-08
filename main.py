@@ -29,21 +29,23 @@ access_token_list = {}
 
 
 def main(auto_test=False):
+    """
+    接口测试启动函数
+    :param auto_test:
+    :return:
+    """
+    # 接口测试配置文件
     config_path = os.path.join(os.getcwd(), "config.yml")
     config_file = open(config_path)
     config_yml = yaml.load(config_file)
     config_file.close()
+    # 获得基本配置信息
     base_config = config_yml["base"]
+    # 获得邮件信息
     email_config = config_yml["email"]
-    debug = base_config.get("debug", 1)
-    mode = base_config.get("case_src", "local")
-    case_type = base_config.get("case_type", "xml")
-    if "local" == mode:
-        # 从本地获得用例信息
-        case_list = LocalCase().get_case_list(case_type)
-    else:
-        pass
-        # 用服务器获得用例信息
+    # 从本地获得用例信息
+    case_list = LocalCase().get_case_list()
+
     # 统计
     failure_count = 0
     skip_count = 0
@@ -58,17 +60,23 @@ def main(auto_test=False):
         # session 为None说明登录失败，用例不继续
         sys.exit(-1)
     local_report_obj = LocalReport()
+    # 循环所有测试用例，判断是需要进行测试
     for case_info in case_list:
+        # python main.py  [option] 若存在option，则为自动化测试，不存在debug模式
         if not auto_test:
-            if debug == 1 and not case_info.get("case_debug", "false") == "true":
+            if not case_info.get("case_debug", "false") == "true":
                 skip_count += 1
                 continue
-        case_user = case_info.get("case_user","")
+        # 获得测试用例中的用户信息(支持多用户测试)
+        case_user = case_info.get("case_user", "")
         if not case_user:
             continue
         base_config['username'] = case_user
+        # 测试用例对应的用户密码
         base_config['password'] = test_user[case_user]
+        # 登录成功，获得用户的token
         access_token_list[case_user] = login(base_config)
+        # 测试用例信息给测试请求对象，base_config中包含全局参数，用户请求参数加密，可根据实际情况决定是否需要
         case = CaseRequest(case_info, base_config)
 
         case.run(access_token_list[case_user])
@@ -134,6 +142,7 @@ def main(auto_test=False):
     #         print e
 
 if __name__ == "__main__":
+    #  参数为任意值，若带参数则执行测是所用用例的自动化测试，若不带参数则执行单个测试用例(xml中的case_debug为true的用例)
     argv_len = len(sys.argv)
     auto_test = False
     if argv_len > 1:

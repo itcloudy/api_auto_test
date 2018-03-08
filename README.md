@@ -15,7 +15,6 @@ email:
     - tresyt@qq.com
 
 base:
-  debug: 1  # debug模式
   base_url: http://192.168.16.16:8082 # 请求基地址
   username: system_saler  # 基本测试用户
   password: batarbatar3  # 基本测试用户密码
@@ -23,9 +22,8 @@ base:
   login_url: account/account/login # 登录地址，需要登录
   app_id: 1000  
   app_secret: abc
-  case_type: xml  # 测试用例类型
-  local_report: 1  # 本地报告
-  #上述未注释的为系统使用的全局半数，可针对系统增减
+  local_report: 1  # 本地报告 暂未使用
+  #上述未注释的为系统使用的全局参数，可针对系统增减
 </code></pre>
 
 ## 报告样例

@@ -119,8 +119,10 @@ class CaseRequest(object):
         返回测试结果
         :return: Ture/False
         """
+        # 根据测试用例信息，发送请求
         self.request(access_token)
         print "response code: ", self.response or self.response.status_code, "text: ", self.response.text
+        # 对请求结果进行判断
         if self.response and self.response.status_code:
             status_code = self.response.status_code
             response_text = self.response.text

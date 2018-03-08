@@ -1,19 +1,17 @@
-email:
+email: # 邮件配置信息
   host: smtp.qq.com
   user: 45@qq.com
   passwd: uqucfxajhaewbiei
-  receivers:
+  receivers: # 报告接受者列表
     - tresyt@qq.com
 
 base:
-  debug: 1
   base_url: http://192.168.16.16:8082
-  username: system_saler
-  password: batarbatar3
+  username: system_saler #登录用户名
+  password: batarbatar3  # 登录用户密码
   company_id: 1
   login_url: account/account/login
   app_id: 1000
   app_secret: abc
-  case_type: xml
   local_report: 1
 

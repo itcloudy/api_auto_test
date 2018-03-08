@@ -7,7 +7,6 @@
 @file:local_case.py
 @date:2017/9/25 15:54
 """
-import xlrd
 import os
 from xml.dom.minidom import parse
 import xml.dom.minidom
@@ -17,31 +16,6 @@ class LocalCase(object):
     """本地获得测试用例信息"""
 
     @staticmethod
-    def get_all_excel_file():
-        """
-        获得所有的excel文件
-        :return:
-        """
-        file_list = []
-        all_cases = []
-        case_dir = os.path.join(os.getcwd(), "test_case")
-        case_excel = os.path.join(case_dir, "excel")
-        for root, dirs, files in os.walk(case_excel):
-            for fp_st in files:
-                if fp_st.endswith(".xlsx"):
-                    file_list.append(os.path.join(case_excel,fp_st))
-        for fp_name in file_list:
-            case_file = xlrd.open_workbook(filename=fp_name)
-            sheet = case_file.sheet_by_index(0)
-            title_line = sheet.row_values(0)
-            titles = []
-            for v in title_line:
-                titles.append(v.strip())
-            for line in range(1, sheet.nrows):
-                all_cases.append(dict(zip(titles, sheet.row_values(line))))
-        return all_cases
-
-    @staticmethod
     def get_all_xml_file():
         """
         获得所有的xml文件
@@ -49,12 +23,16 @@ class LocalCase(object):
         """
         file_list = []
         all_cases = []
+        # 获得测试用例文件路径
         case_dir = os.path.join(os.getcwd(), "test_case")
+        # 获得xml测试用例路径
         case_xml = os.path.join(case_dir, "xml")
+        # 获得xml文件夹下的所有xml文件，并解析其中的测试用例信息
         for root, dirs, files in os.walk(case_xml):
             for fp_st in files:
                 if fp_st.endswith(".xml"):
                     file_list.append(os.path.join(case_xml, fp_st))
+        # 循环所有xml文件，解析其中的测试用例信息
         for file_xml in file_list:
             tree = xml.dom.minidom.parse(file_xml)
             data = tree.documentElement
@@ -95,17 +73,8 @@ class LocalCase(object):
                 })
         return all_cases
 
-    def get_case_list(self,case_types="xml"):
+    def get_case_list(self):
         """获得所有的测试用例信息"""
-        all_cases = []
-        if case_types:
-            case_type_list = case_types.split(",")
-            for case_type in case_type_list:
-                if "xml" == case_type:
-                    all_cases += self.get_all_xml_file()
-                elif "excel" == case_type:
-                    all_cases += self.get_all_excel_file()
-                elif "yml" == case_type:
-                    all_cases += self.get_all_yml_file()
+        all_cases = self.get_all_xml_file()
         return all_cases
 

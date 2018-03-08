@@ -7,14 +7,10 @@
 @file:util.py
 @date:2017/9/25 17:02
 """
-import ConfigParser
-import os
 import requests
-import urllib
 import json
 import base64
 import hashlib
-
 
 
 def login(base_config):
@@ -31,8 +27,10 @@ def login(base_config):
     login_url = base_url + "/" + base_config.get("login_url")
     username = username.strip()
     password = password.strip()
+    # 登录参数可以根据情况删减
     login_values = {'accountName': username, "password": password, "companyId": company_id}
 
+    # 登录请求参数加密，若不需要加密，注释该行即可
     login_values = get_sign_key(login_values, "POST", login_url, "", app_id, app_secret)
     headers = {'content-type': 'application/json'}
     response = requests.post(login_url, data=json.dumps(login_values), headers=headers)
@@ -50,7 +48,7 @@ def login(base_config):
 
 def get_sign_key(data={}, method="GET", url="", access_token="", app_id="", app_secret=""):
     """
-
+    请求数据加密函数，若加密方式不同，根据实际情况进行修改
     :param data: 请求数据
     :param method: 请求方法
     :param url:请求地址

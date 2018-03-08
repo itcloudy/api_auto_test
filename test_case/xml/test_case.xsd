@@ -9,14 +9,23 @@
 				<xs:element  name="case_api">
 					<xs:complexType>
 						<xs:sequence>
+							<!--测试用例名称-->
 							<xs:element name="case_name" type="xs:string"/>
+							<!--测试用例使用的用户，用于支持多用户-->
 							<xs:element name="case_user" type="xs:string"/>
+							<!--用例所属大类或者服务-->
 							<xs:element name="case_category" type="xs:string"/>
+							<!--用例所属模块-->
 							<xs:element name="case_module" type="xs:string"/>
+							<!--用例测试功能点-->
 							<xs:element name="case_function" type="xs:string"/>
+							<!--测试用例是否有效，暂未使用-->
 							<xs:element name="case_active" type="xs:boolean" default="true"/>
+							<!--当前测试用例是否开启debug-->
 							<xs:element name="case_debug" type="xs:boolean" default="true"/>
+							<!--请求地址-->
 							<xs:element name="case_address" type="xs:string"/>
+							<!--请求数据位置-->
 							<xs:element name="case_data_location" >
 								<xs:simpleType>
 									<xs:restriction base="xs:string">
@@ -25,6 +34,7 @@
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
+							<!--请求方法-->
 							<xs:element name="case_method" >
 								<xs:simpleType>
 									<xs:restriction base="xs:string">
@@ -35,6 +45,7 @@
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
+							<!--请求数据类型-->
 							<xs:element name="case_data_type" >
 								<xs:simpleType>
 									<xs:restriction base="xs:string">
@@ -44,6 +55,7 @@
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
+							<!--测试用例检查点，用于判断功能是否满足需要-->
 							<xs:element name="case_check_point">
 								<xs:simpleType>
 									<xs:restriction base="xs:string">
@@ -55,6 +67,7 @@
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
+							<!--测试用例检查内容-->
 							<xs:element name="case_check_content" >
 								<xs:simpleType>
 									<xs:restriction base="xs:string">
@@ -62,6 +75,7 @@
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
+							<!--请求数据-->
 							<xs:element name="case_request_data">
 								<xs:simpleType>
 									<xs:restriction base="xs:string">
@@ -69,6 +83,7 @@
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
+							<!--测试用例说明-->
 							<xs:element name="case_comment" type="xs:string"  />
 						</xs:sequence>
 					</xs:complexType>

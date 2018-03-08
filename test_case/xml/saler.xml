@@ -4,7 +4,25 @@
 	xsi:schemaLocation="http://www.batar.cn test_case.xsd">
     <case_api>
         <case_name>saler_1_001</case_name>
-        <case_category>销售服务</case_category><case_user>system_saler</case_user>
+        <case_category>销售服务</case_category>
+        <case_user>system_saler</case_user>
+        <case_module>查看销售信息</case_module>
+        <case_function>查询存在的id对应的销售人员信息</case_function>
+        <case_active>true</case_active>
+        <case_debug>false</case_debug>
+        <case_address>/saler/saler/1</case_address>
+        <case_data_location>本地</case_data_location>
+        <case_method>get</case_method>
+        <case_data_type>Form</case_data_type>
+        <case_check_point>包含</case_check_point>
+        <case_check_content>"msg":"操作成功"</case_check_content>
+        <case_request_data>{"id":1}</case_request_data>
+        <case_comment>查询存在的id对应的销售人员信息</case_comment>
+    </case_api>
+    <case_api>
+        <case_name>saler_1_002</case_name>
+        <case_category>销售服务</case_category>
+        <case_user>system_saler</case_user>
         <case_module>查看销售信息</case_module>
         <case_function>查询存在的id对应的销售人员信息</case_function>
         <case_active>true</case_active>
